@@ -248,6 +248,70 @@
         color: #cccccc;
         text-decoration: none;
     }
+
+    /* Carousel Styles */
+    .carousel {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .carousel-content {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+        min-width: 100%;
+        box-sizing: border-box;
+        display: none; /* Hide all items initially */
+        text-align: center;
+        color: white;
+    }
+
+    .carousel-item.active {
+        display: block; /* Show the active item */
+    }
+
+    .carousel-item img,
+    .carousel-item video {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .carousel-description {
+        margin-top: 10px;
+        font-size: 1.2em;
+        color: #ffffff;
+    }
+
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.5);
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 2em;
+        color: white;
+        border-radius: 50%;
+    }
+
+    .carousel-control.prev {
+        left: 10px;
+    }
+
+    .carousel-control.next {
+        right: 10px;
+    }
+
+    .carousel-control:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+    }
 </style>
 </head>
 <body>
@@ -319,7 +383,60 @@
     <section id="visual">
         <div class="container">
             <div class="glassmorphism-rectangle">
-                <h1>Visual Section</h1>
+                <h1>Visual</h1>
+                <div class="carousel">
+                    <div class="carousel-content">
+                        <!-- Image Items -->
+                        <div class="carousel-item active">
+                            <img src="images/embo.jpeg" alt="Description of Image 1">
+                            <p class="carousel-description"></p>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/Untitled-1.jpg" alt="Description of Image 2">
+                            <p class="carousel-description"></p>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/skin01.png" alt="Description of Image 3">
+                            <p class="carousel-description">Custom Vital UI</p>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/skin02.png" alt="Description of Image 4">
+                            <p class="carousel-description">Custom Vital UI</p>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/skin03.png" alt="Description of Image 5">
+                            <p class="carousel-description">Custom Vital UI</p>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/skin04.png" alt="Description of Image 6">
+                            <p class="carousel-description">Custom Vital UI</p>
+                        </div>
+                        <!-- Video Items -->
+                        <div class="carousel-item">
+                            <video controls>
+                                <source src="images/sixis wip_0.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <p class="carousel-description">Ableton and Touchdesigner</p>
+                        </div>
+                        <div class="carousel-item">
+                            <video controls>
+                                <source src="images/Tdmovieout.3.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <p class="carousel-description"></p>
+                        </div>
+                        <div class="carousel-item">
+                            <video controls>
+                                <source src="images/Tdmovieout.2.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <p class="carousel-description">Description for Video 3</p>
+                        </div>
+                    </div>
+                    <button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>
+                    <button class="carousel-control next" onclick="nextSlide()">&#10095;</button>
+                </div>
             </div>
         </div>
     </section>
@@ -348,6 +465,32 @@
             });
         });
     });
+
+    // Carousel functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-item');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) {
+                slide.classList.add('active');
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Initialize the carousel
+    showSlide(currentSlide);
 </script>
 </body>
 </html>
