@@ -222,6 +222,32 @@
         display: block;
         margin-top: 5px; /* Add space between image and text */
     }
+
+    .soundcloud-embed {
+        width: 100%;
+        max-width: 600px;
+        height: 300px; /* Adjusted height for playlist */
+        margin-top: 20px; /* Space between title and player */
+        border: none;
+    }
+
+    .soundcloud-links {
+        font-size: 10px;
+        color: #cccccc;
+        line-break: anywhere;
+        word-break: normal;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
+        font-weight: 100;
+        margin-top: 10px; /* Space between player and links */
+    }
+
+    .soundcloud-links a {
+        color: #cccccc;
+        text-decoration: none;
+    }
 </style>
 </head>
 <body>
@@ -279,7 +305,14 @@
     <section id="discography">
         <div class="container">
             <div class="glassmorphism-rectangle">
-                <h1>Discography Section</h1>
+                <h1>Discography</h1>
+                <iframe class="soundcloud-embed" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1857114261&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+                </iframe>
+                <div class="soundcloud-links">
+                    <a href="https://soundcloud.com/deltachilddubs" title="delta child" target="_blank">delta child</a> · 
+                    <a href="https://soundcloud.com/deltachilddubs/sets/dc-label-releases" title="DC LABEL RELEASES" target="_blank">DC LABEL RELEASES</a>
+                </div>
             </div>
         </div>
     </section>
