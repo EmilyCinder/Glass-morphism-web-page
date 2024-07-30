@@ -5,47 +5,316 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Glassmorphism Landing Page</title>
 <style>
-    html, body {
+    /* Import the Forma DJR Mono Bold font */
+    @import url('https://fonts.googleapis.com/css2?family=Forma+DJR+Mono:wght@700&display=swap');
+
+    /* Reset default browser styles */
+    * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box; /* Ensure consistent sizing */
+    }
+
+    html, body {
         width: 100%;
         height: 100%;
-        overflow: hidden; /* Prevents any scrolling */
+        overflow-x: hidden; /* Prevents horizontal scrolling */
+        font-family: 'Forma DJR Mono', monospace; /* Apply Forma DJR Mono Bold font */
+    }
+
+    body {
+        background: url('images/background.jpg') no-repeat center center fixed; /* Single background image */
+        background-size: cover;
+    }
+
+    .parallax {
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
+        scroll-snap-align: start;
+        padding-top: 80px; /* Adjust based on navbar height */
+        width: 100%; /* Ensure full width */
     }
 
     .container {
         width: 100%;
-        height: 100vh; /* Full viewport height */
-        background: url('images/background.jpg') no-repeat center center;
-        background-size: cover;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 5%; /* Adjusted for smaller margin effect */
+        padding: 5%;
+        box-sizing: border-box; /* Include padding in element's total width */
     }
 
     .glassmorphism-rectangle {
-        width: 80%; /* Substantial width */
-        height: 70%; /* Substantial height */
-        background: rgba(255, 255, 255, 0.1); /* Semi-transparent white for the glass effect */
+        width: 90%;
+        max-width: 800px; /* Increased max width */
+        height: 80vh; /* Increased height for more content space */
+        max-height: 700px; /* Increased max height */
+        background: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px); /* Essential for glassmorphism effect */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds depth */
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 30px; /* Added padding for inner spacing */
+    }
+
+    h1 {
+        color: white;
+        font-size: 2.2em; /* Slightly larger font size */
+        margin: 0;
+        margin-bottom: 30px; /* Add spacing between title and content */
+        text-transform: uppercase; /* Make text uppercase */
+    }
+
+    @media (max-width: 768px) {
+        .glassmorphism-rectangle {
+            width: 95%;
+            height: auto;
+            padding: 20px;
+            max-width: 100%; /* Ensure it fits smaller screens */
+        }
+
+        h1 {
+            font-size: 1.8em;
+        }
+
+        .preset-container {
+            flex-direction: column; /* Stack items vertically on smaller screens */
+        }
+
+        .preset-item {
+            width: 80%; /* Adjust width for smaller screens */
+            margin-bottom: 20px; /* Space between items */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .glassmorphism-rectangle {
+            width: 100%;
+            height: auto;
+            padding: 15px;
+        }
+
+        h1 {
+            font-size: 1.5em;
+        }
+    }
+
+    .navbar {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        box-sizing: border-box;
+    }
+
+    .navbar ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    .navbar ul li {
+        margin: 0 70px; /* Adjust spacing between links */
+    }
+
+    .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1em;
+        text-transform: uppercase; /* Make links uppercase */
+        transition: color 0.3s;
+    }
+
+    .navbar ul li a:hover {
+        color: #ddd;
+    }
+
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1; /* Takes up remaining space for centering */
+    }
+
+    .navbar .logo {
+        width: 80px; /* Larger logo size */
+        height: 80px;
+        background: url('images/2.png') no-repeat center center;
+        background-size: contain;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    section {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        scroll-snap-align: start;
+        width: 100%;
+        box-sizing: border-box; /* Include padding in element's total width */
+    }
+
+    .preset-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+    }
+
+    .preset-item {
+        text-align: center;
+        color: white;
+        width: 40%; /* Reduced width for better spacing */
+    }
+
+    .preset-item img {
+        width: 100%;
+        max-width: 250px; /* Increased image size */
+        height: auto;
+        border-radius: 10px;
+        transition: transform 0.3s;
+    }
+
+    .preset-item img:hover {
+        transform: scale(1.05);
+    }
+
+    .preset-item a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+        white-space: nowrap; /* Ensure text stays on one line */
+    }
+
+    .preset-item a span {
+        display: block;
+        margin-top: 5px; /* Add space between image and text */
     }
 </style>
 </head>
 <body>
-    <div class="container">
-        <div class="glassmorphism-rectangle">
-            <h1></h1>
+    <div class="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#biography">Biography</a></li>
+            <li><a href="#presets">Presets</a></li>
+        </ul>
+        <div class="logo-container">
+            <div class="logo"></div>
         </div>
+        <ul>
+            <li><a href="#discography">Discography</a></li>
+            <li><a href="#visual">Visual</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </div>
+
+    <section class="parallax" id="home">
+        <div class="container">
+            <div class="glassmorphism-rectangle">
+                <h1>Welcome to Our Site</h1>
+            </div>
+        </div>
+    </section>
+    <section id="biography">
+        <div class="container">
+            <div class="glassmorphism-rectangle">
+                <h1>Biography Section</h1>
+            </div>
+        </div>
+    </section>
+    <section id="presets">
+        <div class="container">
+            <div class="glassmorphism-rectangle">
+                <h1>Presets</h1>
+                <div class="preset-container">
+                    <div class="preset-item">
+                        <a href="https://deltachild.gumroad.com/l/DCVITALPRESETV1?_gl=1*1irxxoz*_ga*MTczMzIzNjI5NS4xNzE5MjYxMDk1*_ga_6LJN6D94N6*MTcyMjM3Njc2MS4yLjEuMTcyMjM3NzEzMS4wLjAuMA..">
+                            <img src="images/v1.jpeg" alt="DC VITAL PRESETS V1">
+                            <span>DC VITAL PRESETS V1</span>
+                        </a>
+                    </div>
+                    <div class="preset-item">
+                        <a href="https://deltachild.gumroad.com/l/DCVITALPRESETSV2?_gl=1*drwrl2*_ga*MTczMzIzNjI5NS4xNzE5MjYxMDk1*_ga_6LJN6D94N6*MTcyMjM3Njc2MS4yLjEuMTcyMjM3NzA5NS4wLjAuMA..">
+                            <img src="images/v2.jpeg" alt="DC VITAL PRESETS V2">
+                            <span>DC VITAL PRESETS V2</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="discography">
+        <div class="container">
+            <div class="glassmorphism-rectangle">
+                <h1>Discography Section</h1>
+            </div>
+        </div>
+    </section>
+    <section id="visual">
+        <div class="container">
+            <div class="glassmorphism-rectangle">
+                <h1>Visual Section</h1>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="container">
+            <div class="glassmorphism-rectangle">
+                <h1>Contact Section</h1>
+            </div>
+        </div>
+    </section>
+
+<script>
+    // Parallax effect for the background image
+    window.addEventListener('scroll', function() {
+        const parallax = document.querySelector('.parallax');
+        let scrollPosition = window.pageYOffset;
+        parallax.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('.navbar a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
 </body>
 </html>
