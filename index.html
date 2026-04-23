@@ -3,132 +3,492 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Delta Child</title>
+  <title>Luxoria | Premium Experience</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            mono: ["'Forma DJR Mono'", "monospace"]
+            sans: ["'Inter'", "sans-serif"],
+            serif: ["'Cormorant Garamond'", "serif"]
+          },
+          colors: {
+            'luxury-pink': '#f8e1e7',
+            'luxury-gold': '#d4af37',
+            'glass-white': 'rgba(255, 255, 255, 0.15)'
+          },
+          backdropBlur: {
+            'xs': '2px',
+            'xxl': '40px'
           }
         }
       }
     }
   </script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Forma+DJR+Mono:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+    
     body {
-      background: url('images/background.jpg') no-repeat center center fixed;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                  url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
       background-size: cover;
-      font-family: 'Forma DJR Mono', monospace;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+    
+    .glass-container {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+    }
+    
+    .glass-container-heavy {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(35px);
+      -webkit-backdrop-filter: blur(35px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    
+    .parallax-bg {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.3);
+      bottom: 0;
+      left: 25%;
+    }
+    
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      background: #f8e1e7;
+      bottom: -5px;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover:after {
+      width: 100%;
+    }
+    
+    .product-card {
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+    
+    .delay-3 {
+      animation-delay: 0.6s;
     }
   </style>
 </head>
 <body class="text-white scroll-smooth">
   <!-- Navbar -->
-  <header class="fixed top-0 left-0 w-full z-50 bg-white/10 backdrop-blur-md shadow border-b border-white/20">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+  <header class="fixed top-0 left-0 w-full z-50 glass-container-heavy">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
       <div class="flex items-center space-x-4">
-        <div class="w-10 h-10 bg-center bg-contain bg-no-repeat animate-pulse" style="background-image: url('images/2.png')"></div>
-        <span class="text-xl font-bold">Delta Child</span>
+        <div class="w-12 h-12 rounded-full glass-container flex items-center justify-center">
+          <span class="font-serif text-2xl font-semibold tracking-widest">L</span>
+        </div>
+        <span class="font-serif text-2xl font-semibold tracking-widest">LUXORIA</span>
       </div>
-      <nav class="hidden md:flex space-x-6">
-        <a href="#home" class="uppercase hover:text-gray-300">Home</a>
-        <a href="#biography" class="uppercase hover:text-gray-300">Biography</a>
-        <a href="#presets" class="uppercase hover:text-gray-300">Presets</a>
-        <a href="#discography" class="uppercase hover:text-gray-300">Discography</a>
-        <a href="#visual" class="uppercase hover:text-gray-300">Visual</a>
-        <a href="#contact" class="uppercase hover:text-gray-300">Contact</a>
+      <nav class="hidden md:flex space-x-10">
+        <a href="#home" class="nav-link uppercase text-luxury-pink font-medium tracking-wider">Home</a>
+        <a href="#collections" class="nav-link uppercase text-luxury-pink font-medium tracking-wider">Collections</a>
+        <a href="#craftsmanship" class="nav-link uppercase text-luxury-pink font-medium tracking-wider">Craftsmanship</a>
+        <a href="#experience" class="nav-link uppercase text-luxury-pink font-medium tracking-wider">Experience</a>
+        <a href="#heritage" class="nav-link uppercase text-luxury-pink font-medium tracking-wider">Heritage</a>
+        <a href="#contact" class="nav-link uppercase text-luxury-pink font-medium tracking-wider">Contact</a>
       </nav>
       <div class="md:hidden">
-        <button id="menu-toggle" class="text-white focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        <button id="menu-toggle" class="text-luxury-pink focus:outline-none">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
         </button>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden flex-col px-4 pb-4 space-y-2">
-      <a href="#home" class="block uppercase hover:text-gray-300">Home</a>
-      <a href="#biography" class="block uppercase hover:text-gray-300">Biography</a>
-      <a href="#presets" class="block uppercase hover:text-gray-300">Presets</a>
-      <a href="#discography" class="block uppercase hover:text-gray-300">Discography</a>
-      <a href="#visual" class="block uppercase hover:text-gray-300">Visual</a>
-      <a href="#contact" class="block uppercase hover:text-gray-300">Contact</a>
+    <div id="mobile-menu" class="hidden md:hidden flex-col px-6 py-6 space-y-6 glass-container-heavy">
+      <a href="#home" class="block uppercase text-luxury-pink font-medium tracking-wider py-2 border-b border-white/10">Home</a>
+      <a href="#collections" class="block uppercase text-luxury-pink font-medium tracking-wider py-2 border-b border-white/10">Collections</a>
+      <a href="#craftsmanship" class="block uppercase text-luxury-pink font-medium tracking-wider py-2 border-b border-white/10">Craftsmanship</a>
+      <a href="#experience" class="block uppercase text-luxury-pink font-medium tracking-wider py-2 border-b border-white/10">Experience</a>
+      <a href="#heritage" class="block uppercase text-luxury-pink font-medium tracking-wider py-2 border-b border-white/10">Heritage</a>
+      <a href="#contact" class="block uppercase text-luxury-pink font-medium tracking-wider py-2 border-b border-white/10">Contact</a>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section id="home" class="h-screen flex justify-center items-center pt-20 px-4">
-    <div class="bg-white/10 border border-white/20 backdrop-blur-lg p-10 rounded-xl shadow-xl max-w-2xl text-center">
-      <h1 class="text-4xl font-bold uppercase mb-4">Welcome to Delta Child's EPK</h1>
-      <p class="text-lg">Producer • DJ • AV Artist</p>
-    </div>
-  </section>
-
-  <!-- Biography -->
-  <section id="biography" class="min-h-screen flex justify-center items-center px-4 pt-20">
-    <div class="bg-white/10 border border-white/20 backdrop-blur-lg p-8 rounded-xl shadow-xl max-w-4xl w-full text-center">
-      <h2 class="text-3xl font-bold mb-6 uppercase">Biography</h2>
-      <p class="mb-4">Delta Child is an experimental music producer and DJ based in Sacramento, California. Her sound lives at the intersection of heavy trap drums, glitchy textures, and emotionally tense string arrangements—creating sonic environments that feel as cinematic as they are chaotic.</p>
-      <p class="mb-4">Producing for over five years and DJing for eight, Delta Child brings a deep sense of rhythm and raw emotion to her sets. Her performances often explore polyrhythmic structures and off-kilter grooves.</p>
-      <p class="mb-4">She is a visual innovator—using TouchDesigner to craft immersive audiovisual sets where reactive visuals pulse and distort in sync with her sound.</p>
-      <p class="mb-4">Delta Child contributes editorial work to The Synapse in partnership with Neurodot Studio, exploring the impact of technology on underground music. While she is currently finishing her Bachelor's of Engineering, she is pursuing her own independent Concatentive Synthesis studies.</p>
-    </div>
-  </section>
-
-  <section id="presets" class="min-h-screen flex justify-center items-center px-4 pt-20">
-  <div class="bg-white/10 border border-white/20 backdrop-blur-lg p-8 rounded-xl shadow-xl max-w-5xl w-full text-center">
-    <h2 class="text-3xl font-bold mb-6 uppercase">Presets</h2>
-    <div class="flex flex-col md:flex-row gap-8 justify-center items-center">
-      <div class="text-center">
-        <a href="https://deltachild.gumroad.com/l/DCVITALPRESETV1" target="_blank">
-          <img src="images/3500x3500 Deep purple logo .jpg" alt="DC VITAL PRESETS V1" class="w-60 h-auto rounded-lg mb-2 hover:scale-105 transition-transform duration-300">
-          <span class="block mt-2 font-semibold">DC VITAL PRESETS V1</span>
-        </a>
-      </div>
-      <div class="text-center">
-        <a href="https://deltachild.gumroad.com/l/DCVITALPRESETSV2" target="_blank">
-          <img src="images/3500x3500 Deep purple logo .jpg" alt="DC VITAL PRESETS V2" class="w-60 h-auto rounded-lg mb-2 hover:scale-105 transition-transform duration-300">
-          <span class="block mt-2 font-semibold">DC VITAL PRESETS V2</span>
+  <section id="home" class="h-screen flex justify-center items-center px-4 pt-20">
+    <div class="text-center max-w-4xl mx-auto">
+      <div class="glass-container p-12 rounded-2xl fade-in">
+        <h1 class="font-serif text-5xl md:text-7xl font-light mb-6 tracking-wider">ELEVATED ESSENCE</h1>
+        <div class="w-24 h-px bg-gradient-to-r from-transparent via-luxury-pink to-transparent mx-auto my-8"></div>
+        <p class="text-xl md:text-2xl font-light max-w-2xl mx-auto mb-10 opacity-90">
+          Where timeless craftsmanship meets contemporary elegance. Discover the art of luxury redefined.
+        </p>
+        <a href="#collections" class="inline-block glass-container-heavy px-10 py-4 rounded-full uppercase tracking-widest font-medium hover:bg-white/10 transition-all duration-300">
+          Explore Collections
         </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Discography with SoundCloud -->
-  <section id="discography" class="min-h-screen flex justify-center items-center px-4 pt-20">
-    <div class="bg-white/10 border border-white/20 backdrop-blur-lg p-8 rounded-xl shadow-xl max-w-3xl w-full text-center">
-      <h2 class="text-3xl font-bold mb-6 uppercase">Discography</h2>
-      <div class="w-full aspect-video">
-        <iframe class="w-full h-full rounded-md border-none" allow="autoplay" frameborder="no" scrolling="no"
-          src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/2001998084&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
-        </iframe>
+  <!-- Collections -->
+  <section id="collections" class="min-h-screen flex justify-center items-center px-4 pt-20 py-20">
+    <div class="max-w-7xl mx-auto w-full">
+      <h2 class="font-serif text-4xl text-center mb-16 section-title fade-in">Our Collections</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Collection 1 -->
+        <div class="glass-container p-8 rounded-2xl product-card fade-in delay-1">
+          <div class="h-64 mb-6 rounded-xl overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-luxury-pink/20 to-transparent flex items-center justify-center">
+              <div class="text-center">
+                <div class="w-20 h-20 rounded-full glass-container mx-auto mb-4 flex items-center justify-center">
+                  <span class="font-serif text-3xl">S</span>
+                </div>
+                <span class="font-serif text-xl">Signature</span>
+              </div>
+            </div>
+          </div>
+          <h3 class="font-serif text-2xl mb-4">Signature Collection</h3>
+          <p class="opacity-80 mb-6">Iconic pieces that define the essence of Luxoria, crafted with unparalleled attention to detail.</p>
+          <a href="#" class="text-luxury-pink font-medium uppercase tracking-wider text-sm flex items-center">
+            Discover
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+        
+        <!-- Collection 2 -->
+        <div class="glass-container p-8 rounded-2xl product-card fade-in delay-2">
+          <div class="h-64 mb-6 rounded-xl overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-luxury-gold/20 to-transparent flex items-center justify-center">
+              <div class="text-center">
+                <div class="w-20 h-20 rounded-full glass-container mx-auto mb-4 flex items-center justify-center">
+                  <span class="font-serif text-3xl">H</span>
+                </div>
+                <span class="font-serif text-xl">Heritage</span>
+              </div>
+            </div>
+          </div>
+          <h3 class="font-serif text-2xl mb-4">Heritage Edition</h3>
+          <p class="opacity-80 mb-6">A tribute to our legacy, combining traditional techniques with modern aesthetics.</p>
+          <a href="#" class="text-luxury-pink font-medium uppercase tracking-wider text-sm flex items-center">
+            Discover
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+        
+        <!-- Collection 3 -->
+        <div class="glass-container p-8 rounded-2xl product-card fade-in delay-3">
+          <div class="h-64 mb-6 rounded-xl overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+              <div class="text-center">
+                <div class="w-20 h-20 rounded-full glass-container mx-auto mb-4 flex items-center justify-center">
+                  <span class="font-serif text-3xl">A</span>
+                </div>
+                <span class="font-serif text-xl">Avant-Garde</span>
+              </div>
+            </div>
+          </div>
+          <h3 class="font-serif text-2xl mb-4">Avant-Garde</h3>
+          <p class="opacity-80 mb-6">Pushing boundaries with innovative designs that challenge conventional luxury.</p>
+          <a href="#" class="text-luxury-pink font-medium uppercase tracking-wider text-sm flex items-center">
+            Discover
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Craftsmanship -->
+  <section id="craftsmanship" class="min-h-screen flex justify-center items-center px-4 pt-20 py-20 parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')">
+    <div class="max-w-4xl mx-auto w-full">
+      <div class="glass-container-heavy p-12 rounded-2xl">
+        <h2 class="font-serif text-4xl text-center mb-10 section-title fade-in">Artisanal Craftsmanship</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div class="fade-in delay-1">
+            <h3 class="font-serif text-2xl mb-6 flex items-center">
+              <span class="w-10 h-px bg-luxury-pink mr-4"></span>
+              Time-Honored Techniques
+            </h3>
+            <p class="opacity-90 mb-6">Each Luxoria piece is brought to life by master artisans who have honed their craft over decades. We preserve techniques passed down through generations while embracing innovation.</p>
+            <p class="opacity-90">From initial sketch to final polish, every detail is meticulously considered and executed with precision.</p>
+          </div>
+          
+          <div class="fade-in delay-2">
+            <h3 class="font-serif text-2xl mb-6 flex items-center">
+              <span class="w-10 h-px bg-luxury-pink mr-4"></span>
+              Sustainable Luxury
+            </h3>
+            <p class="opacity-90 mb-6">We are committed to responsible luxury, sourcing materials ethically and minimizing our environmental impact without compromising on quality or beauty.</p>
+            <p class="opacity-90">Each piece is designed to be timeless, transcending seasonal trends to become a cherished part of your legacy.</p>
+          </div>
+        </div>
+        
+        <div class="mt-12 pt-10 border-t border-white/10 fade-in delay-3">
+          <div class="flex flex-wrap justify-center gap-8">
+            <div class="text-center">
+              <div class="text-3xl font-serif mb-2">200+</div>
+              <div class="text-sm uppercase tracking-wider opacity-80">Master Artisans</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-serif mb-2">75</div>
+              <div class="text-sm uppercase tracking-wider opacity-80">Years of Heritage</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-serif mb-2">48</div>
+              <div class="text-sm uppercase tracking-wider opacity-80">Hours per Piece</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-serif mb-2">100%</div>
+              <div class="text-sm uppercase tracking-wider opacity-80">Ethically Sourced</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="min-h-screen flex justify-center items-center px-4 pt-20 py-20">
+    <div class="max-w-6xl mx-auto w-full">
+      <h2 class="font-serif text-4xl text-center mb-16 section-title fade-in">The Luxoria Experience</h2>
+      
+      <div class="flex flex-col lg:flex-row gap-10">
+        <div class="lg:w-2/3 fade-in delay-1">
+          <div class="glass-container p-10 rounded-2xl h-full">
+            <h3 class="font-serif text-3xl mb-8">Personalized Consultations</h3>
+            <p class="opacity-90 mb-8 text-lg">Our luxury advisors provide personalized consultations to help you find pieces that resonate with your individual style and story.</p>
+            
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="w-10 h-10 rounded-full glass-container flex items-center justify-center mr-4 flex-shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-serif text-xl mb-2">One-on-One Service</h4>
+                  <p class="opacity-80">Private appointments in our exclusive boutiques or virtual consultations tailored to your schedule.</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="w-10 h-10 rounded-full glass-container flex items-center justify-center mr-4 flex-shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-serif text-xl mb-2">Customization</h4>
+                  <p class="opacity-80">Personalize your selection with engraving, stone selection, or bespoke design adjustments.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="lg:w-1/3 fade-in delay-2">
+          <div class="glass-container p-10 rounded-2xl h-full">
+            <h3 class="font-serif text-3xl mb-8">Exclusive Events</h3>
+            <p class="opacity-90 mb-6">Join our community of connoisseurs at private viewings, artisan workshops, and seasonal collections unveilings.</p>
+            
+            <div class="mt-8 pt-8 border-t border-white/10">
+              <p class="text-luxury-pink font-medium uppercase tracking-wider mb-4">Next Event</p>
+              <p class="font-serif text-xl mb-2">Autumn Collection Preview</p>
+              <p class="opacity-80 text-sm mb-4">October 15, 2023 | Paris Boutique</p>
+              <a href="#" class="inline-flex items-center text-sm uppercase tracking-wider">
+                Request Invitation
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="min-h-screen flex justify-center items-center px-4 pt-20">
-    <div class="bg-white/10 border border-white/20 backdrop-blur-lg p-8 rounded-xl shadow-xl max-w-xl w-full text-center">
-      <h2 class="text-3xl font-bold mb-6 uppercase">Contact</h2>
-      <p class="text-lg">Email: <a href="mailto:detachildasmr@gmail.com" class="underline hover:text-gray-300">detachildasmr@gmail.com</a></p>
+  <section id="contact" class="min-h-screen flex justify-center items-center px-4 pt-20 py-20">
+    <div class="max-w-4xl mx-auto w-full">
+      <div class="glass-container-heavy p-12 rounded-2xl">
+        <h2 class="font-serif text-4xl text-center mb-10 section-title fade-in">Connect With Us</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div class="fade-in delay-1">
+            <h3 class="font-serif text-2xl mb-8">Begin Your Journey</h3>
+            <p class="opacity-90 mb-8">Schedule a private consultation or visit one of our exclusive boutiques worldwide.</p>
+            
+            <div class="space-y-6">
+              <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full glass-container flex items-center justify-center mr-4">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium">+1 (888) 555-LUXURY</p>
+                  <p class="text-sm opacity-80">Monday - Friday, 9am - 6pm EST</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full glass-container flex items-center justify-center mr-4">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium">concierge@luxoria.com</p>
+                  <p class="text-sm opacity-80">Response within 24 hours</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="fade-in delay-2">
+            <form class="space-y-6">
+              <div>
+                <label class="block uppercase tracking-wider text-sm mb-2">Name</label>
+                <input type="text" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-luxury-pink transition-colors" placeholder="Your full name">
+              </div>
+              
+              <div>
+                <label class="block uppercase tracking-wider text-sm mb-2">Email</label>
+                <input type="email" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-luxury-pink transition-colors" placeholder="your.email@example.com">
+              </div>
+              
+              <div>
+                <label class="block uppercase tracking-wider text-sm mb-2">Interest</label>
+                <select class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-luxury-pink transition-colors">
+                  <option value="">Select an option</option>
+                  <option value="consultation">Private Consultation</option>
+                  <option value="collections">Collection Information</option>
+                  <option value="events">Event Invitations</option>
+                  <option value="bespoke">Bespoke Services</option>
+                </select>
+              </div>
+              
+              <button type="submit" class="w-full glass-container-heavy py-4 rounded-lg uppercase tracking-widest font-medium hover:bg-white/10 transition-all duration-300">
+                Request Appointment
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- Footer -->
+  <footer class="py-12 px-4 border-t border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-8 md:mb-0">
+          <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 rounded-full glass-container flex items-center justify-center">
+              <span class="font-serif text-xl font-semibold">L</span>
+            </div>
+            <span class="font-serif text-2xl font-semibold tracking-widest">LUXORIA</span>
+          </div>
+          <p class="mt-4 text-sm opacity-70 max-w-md">Redefining luxury through timeless design, exceptional craftsmanship, and personalized experiences since 1948.</p>
+        </div>
+        
+        <div class="flex space-x-6">
+          <a href="#" class="w-10 h-10 rounded-full glass-container flex items-center justify-center hover:bg-white/10 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+            </svg>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full glass-container flex items-center justify-center hover:bg-white/10 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full glass-container flex items-center justify-center hover:bg-white/10 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="mt-12 pt-8 border-t border-white/10 text-center text-sm opacity-60">
+        <p>&copy; 2023 Luxoria. All rights reserved. | Privacy Policy | Terms of Service</p>
+        <p class="mt-2">This is a design demonstration for luxury brand portfolio purposes.</p>
+      </div>
+    </div>
+  </footer>
+
   <script>
+    // Mobile menu toggle
     document.getElementById("menu-toggle").addEventListener("click", function () {
       const menu = document.getElementById("mobile-menu");
       menu.classList.toggle("hidden");
     });
-  </script>
-</body>
-</html>
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener
 
